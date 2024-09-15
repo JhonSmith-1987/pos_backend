@@ -1,6 +1,5 @@
-import {AuthRequestModel, IResponseAuthLogin} from "../../../models/auth-model";
-import {UserAttributes} from "../../../entities/user-entity";
+import {AuthRequestModel, IAuthData, IResponseAuthLogin} from "../../../models/auth-model";
 
 export interface IVerifyAuthUseCase {
-    execute(auth: AuthRequestModel): Promise<IResponseAuthLogin<string|null, UserAttributes|null>>;
+    execute(auth: AuthRequestModel): Promise<IResponseAuthLogin<IAuthData|null>>;
 }

@@ -8,7 +8,8 @@ export interface UserAttributes {
     password: string;
     status: string;
     user_type: string;
-    creat_date: number;
+    image: string;
+    create_date: number;
     account_id: string;
 }
 
@@ -21,7 +22,8 @@ class UserEntity extends Model<UserAttributes, UserCreationAttributes> implement
     public password!: string;
     public status!: string;
     public user_type!: string;
-    public creat_date!: number;
+    public image!: string;
+    public create_date!: number;
     public account_id!: string;
 }
 
@@ -57,8 +59,13 @@ UserEntity.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    image: {
+        field: 'image',
+        type: DataTypes.STRING(200),
+        allowNull: false,
+    },
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
         allowNull: false,
     },

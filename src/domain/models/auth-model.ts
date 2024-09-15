@@ -9,9 +9,18 @@ export interface generateTokenAuthModel {
     email: string;
 }
 
-export interface IResponseAuthLogin<token, data> {
+export interface IResponseAuthLogin<data> {
     status: number;
     message: string;
-    token: token;
+    token: string|null;
     data: data
+}
+
+export interface IAuthData {
+    id: string;
+    name: string;
+    email: string;
+    status: string;
+    user_type: string;
+    account_id: string;
 }

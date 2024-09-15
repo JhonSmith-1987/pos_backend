@@ -1,6 +1,5 @@
-import {AuthRequestModel, IResponseAuthLogin} from "../../models/auth-model";
-import {UserAttributes} from "../../entities/user-entity";
+import {AuthRequestModel, IAuthData, IResponseAuthLogin} from "../../models/auth-model";
 
 export interface IAuthService {
-    verifyAuth(auth: AuthRequestModel): Promise<IResponseAuthLogin<string|null, UserAttributes|null>>;
+    login(auth: AuthRequestModel): Promise<IResponseAuthLogin<IAuthData|null>>;
 }

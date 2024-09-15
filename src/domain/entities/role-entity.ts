@@ -5,7 +5,7 @@ export interface RoleAttributes {
     id: string;
     name: string;
     description: string;
-    creat_date: number;
+    create_date: number;
     account_id: string;
 }
 
@@ -15,7 +15,7 @@ class RoleEntity extends Model<RoleAttributes, RoleCreationAttributes> implement
     public id!: string;
     public name!: string;
     public description!: string;
-    public creat_date!: number;
+    public create_date!: number;
     public account_id!: string;
 }
 
@@ -36,8 +36,8 @@ RoleEntity.init({
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
         allowNull: false,
     },

@@ -6,7 +6,7 @@ export interface OrderItemAttributes {
     quantity: number;
     unit_price: number;
     total_price: number;
-    creat_date: number;
+    create_date: number;
     order_id: string;
     product_id: string;
 }
@@ -18,7 +18,7 @@ class OrderItemEntity extends Model<OrderItemAttributes, OrderItemCreationAttrib
     public quantity!: number;
     public unit_price!: number;
     public total_price!: number;
-    public creat_date!: number;
+    public create_date!: number;
     public order_id!: string;
     public product_id!: string;
 }
@@ -45,8 +45,8 @@ OrderItemEntity.init({
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
         allowNull: false,
     },

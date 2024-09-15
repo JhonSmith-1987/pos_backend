@@ -9,7 +9,8 @@ export interface ProductAttributes {
     description: string;
     stock_quantity: number;
     is_active: boolean;
-    creat_date: number;
+    create_date: number;
+    image: string;
     account_id: string;
     category_id: string;
 }
@@ -24,7 +25,8 @@ class ProductEntity extends Model<ProductAttributes, ProductCreationAttributes> 
     public description!: string;
     public stock_quantity!: number;
     public is_active!: boolean;
-    public creat_date!: number;
+    public create_date!: number;
+    public image!: string;
     public account_id!: string;
     public category_id!: string;
 }
@@ -66,9 +68,14 @@ ProductEntity.init({
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    image: {
+        field: 'image',
+        type: DataTypes.STRING(200),
         allowNull: false,
     },
     account_id: {

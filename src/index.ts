@@ -11,12 +11,12 @@ import {AccountRepository} from "./infrastructure/repositories/account-repositor
 import AccountRouter from "./presentation/routes/account-router";
 import {AccountService} from "./domain/services/account-service";
 import AuthRouter from "./presentation/routes/auth-router";
-import {VerifyAuth} from "./domain/use-cases/auth/verify-auth";
+import {VerifyAuthUseCase} from "./domain/use-cases/auth/verify-auth-use-case";
 import {AuthService} from "./domain/services/auth-service";
-import {AuthRepository} from "./infrastructure/repositories/auth-repository";
 import {CreateAccountUseCase} from "./domain/use-cases/account/create-account-use-case";
 import {GetAllAccountsUseCase} from "./domain/use-cases/account/get-all-accounts-use-case";
 import {GetAccountByIdUseCase} from "./domain/use-cases/account/get-account-by-id-use-case";
+import {UserRepository} from "./infrastructure/repositories/user-repository";
 
 export const app = express();
 dotenv.config();
@@ -26,9 +26,6 @@ app.use(cors({origin: '*'}));
 
 const port = process.env.PORT || 4000;
 
-// instances of the repository class
-const authDataStorage = new AuthRepository();
-
 // middleware for accounts
 const accountMiddleware = AccountRouter(
     new CreateAccountUseCase(new AccountService(new AccountRepository())),
@@ -37,7 +34,7 @@ const accountMiddleware = AccountRouter(
 );
 
 const authMiddleware = AuthRouter(
-    new VerifyAuth(new AuthService(authDataStorage)),
+    new VerifyAuthUseCase(new AuthService(new UserRepository())),
 );
 
 // routes

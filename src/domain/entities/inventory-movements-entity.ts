@@ -5,7 +5,7 @@ export interface InventoryMovementsAttributes {
     id: string;
     type: string;
     quantity: string;
-    creat_date: number;
+    create_date: number;
     account_id: string;
     product_id: string;
 }
@@ -16,7 +16,7 @@ class InventoryMovementsEntity extends Model<InventoryMovementsAttributes, Inven
     public id!: string;
     public type!: string;
     public quantity!: string;
-    public creat_date!: number;
+    public create_date!: number;
     public account_id!: string;
     public product_id!: string;
 }
@@ -38,8 +38,8 @@ InventoryMovementsEntity.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
         allowNull: false,
     },

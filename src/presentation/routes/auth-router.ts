@@ -1,19 +1,17 @@
-import {VerifyAuth} from "../../domain/use-cases/auth/verify-auth";
 import express from "express";
 import {Request, Response} from 'express';
+import {IVerifyAuthUseCase} from "../../domain/interfaces/use-case/auth/i-verify-auth-use-case";
 
 export default function AuthRouter(
-    verifyAuth: VerifyAuth,
+    verifyAuthUseCase:IVerifyAuthUseCase,
 ) {
     const router = express.Router();
 
-    router.post('/login', async (req: Request, res: Response) => {
+    router.post('/verify_login', async (req: Request, res: Response) => {
         try {
-            const response = await verifyAuth.execute(req.body);
+            const response = await verifyAuthUseCase.execute(req.body);
             res.status(response.status).send(response);
         } catch (error:any) {
-            console.log('****************** error en el auth login ************************');
-            console.log(error);
             if (error.response.status === 500) {
                 res.status(500).send({
                     status: 500,
@@ -22,7 +20,7 @@ export default function AuthRouter(
                 });
                 return;
             }
-            res.status(error.response.status).send(error.response.data.data);
+            res.status(error.response.status).send(error.response.data);
         }
     });
 

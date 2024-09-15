@@ -6,7 +6,7 @@ export interface OrderAttributes {
     total_amount: number;
     status: string;
     payment_method: string;
-    creat_date: number;
+    create_date: number;
     account_id: string;
     user_id: string;
 }
@@ -18,7 +18,7 @@ class OrderEntity extends Model<OrderAttributes, OrderCreationAttributes> implem
     public total_amount!: number;
     public status!: string;
     public payment_method!: string;
-    public creat_date!: number;
+    public create_date!: number;
     public account_id!: string;
     public user_id!: string;
 }
@@ -45,8 +45,8 @@ OrderEntity.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
         allowNull: false,
     },

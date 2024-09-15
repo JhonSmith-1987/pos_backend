@@ -5,7 +5,7 @@ export interface PaymentAttributes {
     id: string;
     payment_method: string;
     amount: number;
-    creat_date: number;
+    create_date: number;
     order_id: string;
     transaction_id: string;
 }
@@ -16,7 +16,7 @@ class PaymentEntity extends Model<PaymentAttributes, PaymentCreationAttributes> 
     public id!: string;
     public payment_method!: string;
     public amount!: number;
-    public creat_date!: number;
+    public create_date!: number;
     public order_id!: string;
     public transaction_id!: string;
 }
@@ -38,8 +38,8 @@ PaymentEntity.init({
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    creat_date: {
-        field: 'creat_date',
+    create_date: {
+        field: 'create_date',
         type: DataTypes.INTEGER,
         allowNull: false,
     },
