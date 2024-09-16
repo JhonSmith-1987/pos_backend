@@ -1,16 +1,17 @@
-import {RequestCreateAccountModel} from "../domain/models/account-model";
 import {getCurrentTimeInSeconds} from "./getCurrentTimeInSeconds";
 import {UserCreationAttributes} from "../domain/entities/user-entity";
+import {RequestCreateUser} from "../domain/models/user-model";
 
-export function generateUserCreateData(register: RequestCreateAccountModel, account_id: string, password_hash: string) {
-    const user: UserCreationAttributes = {
-        name: register.user_name,
-        email: register.business_email,
+export function generateUserCreateData(user: RequestCreateUser, password_hash: string) {
+    const user_data: UserCreationAttributes = {
+        name: user.name,
+        email: user.email,
         password: password_hash,
-        user_type: 'admin',
-        status: 'active',
-        account_id: account_id,
-        creat_date: getCurrentTimeInSeconds(),
+        user_type: user.user_type,
+        status: user.status,
+        account_id: user.account_id,
+        create_date: getCurrentTimeInSeconds(),
+        image: ''
     }
-    return user;
+    return user_data;
 }

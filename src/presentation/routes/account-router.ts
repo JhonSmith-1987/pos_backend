@@ -17,7 +17,11 @@ export default function AccountRouter(
             const response = await createUseCase.execute(req.body);
             res.status(response.status).send(response);
         } catch (error:any) {
-            res.status(error.response.status).send(error.response.data);
+            res.status(500).send({
+                status: 500,
+                message: 'Internal server error',
+                data: null
+            });
         }
     });
 

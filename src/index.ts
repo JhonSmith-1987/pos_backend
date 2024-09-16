@@ -17,6 +17,10 @@ import {CreateAccountUseCase} from "./domain/use-cases/account/create-account-us
 import {GetAllAccountsUseCase} from "./domain/use-cases/account/get-all-accounts-use-case";
 import {GetAccountByIdUseCase} from "./domain/use-cases/account/get-account-by-id-use-case";
 import {UserRepository} from "./infrastructure/repositories/user-repository";
+import UserRouter from "./presentation/routes/user-router";
+import {CreateUserUseCase} from "./domain/use-cases/user/create-user-use-case";
+import {UserService} from "./domain/services/user-service";
+import {GetAllUsersUseCase} from "./domain/use-cases/user/get-all-users-use-case";
 
 export const app = express();
 dotenv.config();
@@ -33,13 +37,21 @@ const accountMiddleware = AccountRouter(
     new GetAccountByIdUseCase(new AccountService(new AccountRepository())),
 );
 
+// middleware for auth
 const authMiddleware = AuthRouter(
     new VerifyAuthUseCase(new AuthService(new UserRepository())),
+);
+
+// middleware for user
+const userMiddleware = UserRouter(
+    new CreateUserUseCase(new UserService(new UserRepository())),
+    new GetAllUsersUseCase(new UserService(new UserRepository())),
 );
 
 // routes
 app.use('/api/v1/account', accountMiddleware);
 app.use('/api/v1/auth', authMiddleware);
+app.use('/api/v1/user', userMiddleware);
 
 async function main() {
     try {

@@ -1,5 +1,6 @@
 import {IUserRepository} from "../../domain/interfaces/repositories/i-user-repository";
 import UserEntity, {UserAttributes, UserCreationAttributes} from "../../domain/entities/user-entity";
+import {IPaginateNumber} from "../../domain/interfaces/common/i-paginate";
 
 export class UserRepository implements IUserRepository {
 
@@ -17,7 +18,8 @@ export class UserRepository implements IUserRepository {
                 create_date: new_user.dataValues.create_date,
                 account_id: new_user.dataValues.account_id,
                 name: new_user.dataValues.name,
-                password: new_user.dataValues.password
+                password: new_user.dataValues.password,
+                image: new_user.dataValues.image
             }
         } catch (error) {
             console.error('************ error al crear usuer ************');
@@ -61,9 +63,11 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    async getAll(): Promise<UserAttributes[]> {
+    async getAll(paginate: IPaginateNumber): Promise<UserAttributes[]> {
         try {
             const users = await UserEntity.findAll({
+                offset: paginate.offset,
+                limit: paginate.limit,
                 attributes: {exclude: ['createdAtt', 'updatedAt']},
                 order: [['create_date', 'ASC']],
             });
